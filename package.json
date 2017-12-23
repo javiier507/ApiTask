@@ -1,0 +1,22 @@
+{
+  "name": "apimongo",
+  "version": "1.0.0",
+  "description": "apimongo by javiier507",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "javiier507",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.1",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
