@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 var User = require('./models/user');
 var Task = require('./models/task');
 
+var auth = require('./middlewares/auth');
+
 module.exports = {
     
     index: function(request, response) {
@@ -32,24 +34,27 @@ module.exports = {
 
     login: function(request, response) {
 
-        User.findOne({ username: 'javiier507' }, function(err, document) {
-            if (err) throw err;
+        const username = request.body.username;
+        const password = request.body.password;
 
-            // test a failing password
-            document.comparePassword('loremipsum', function(err, match) {
-                if (err) throw err;
-                console.log('loremipsum:', match);
-            });
+        User.findOne({ username }, (err, document) => {
+            if (err) throw err;
         
             // test a matching password
-            document.comparePassword('ensabanur616', function(err, match) {
+            document.comparePassword(password, (err, match) => {
                 if (err) throw err;
-                console.log('ensabanur616:', match);
+                
+                if(match)
+                    response.status(200).json({token : auth.getToken(username)});
+                else
+                    response.status(400).json('credenciales incorrectas');
             });
-
-            response.json(document);
         });
 
+    },
+
+    profile : (request, response) => {
+        response.json('profile');
     },
 
     //  TASKS

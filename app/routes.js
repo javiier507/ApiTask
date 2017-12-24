@@ -1,4 +1,5 @@
 const controller = require('./controller');
+const auth = require('./middlewares/auth');
 
 module.exports = function(app)
 {
@@ -10,7 +11,9 @@ module.exports = function(app)
 
     app.post('/register', controller.register);
 
-    app.get('/test', controller.login);
+    app.post('/login', controller.login);
+
+    app.get('/profile', auth.autenticar, controller.profile);
 
     //  TAKS
 
