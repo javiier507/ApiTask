@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 var config = require('./config/config');
-require('./app/routes/routes')(app);
+require('./src/routes/routes')(app);
 
 mongoose.connect(config.database);
 
