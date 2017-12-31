@@ -13,7 +13,7 @@ module.exports = {
 
     users: async (request, response) => {
         const users = await User.find({});
-        response.json(users);
+        response.status(200).json(users);
     },
 
     register: async (request, response) => {
@@ -27,7 +27,7 @@ module.exports = {
         });
 
         const user = await newUser.save();
-        response.json(user);
+        response.status(200).json(user);
         
     },
 
@@ -41,7 +41,6 @@ module.exports = {
         
             if(document)
             {
-                // test a matching password
                 document.comparePassword(password, (err, match) => {
                     if (err) throw err;
                     
@@ -60,6 +59,6 @@ module.exports = {
     },
 
     profile : (request, response) => {
-        response.json('Welcome');
+        response.status(200).json('Welcome');
     },
 }

@@ -12,16 +12,16 @@ module.exports = {
         });
 
         task.save().then((document) => {
-            response.json(document);
+            response.status(200).json(document);
         }).catch((err) => {
-            response.json(err);
+            response.status(500).send('Error');
         });
     },
 
     tasks : (request, response) => {
         
         Task.find().then((document) => {
-            response.json(document);
+            response.status(200).json(document);
         }).catch((err) => {
             response.status(500).send('Error');
         });
@@ -30,7 +30,7 @@ module.exports = {
     task : (request, response) => {
 
         Task.findOne({_id: request.params.id}).then((document) => {
-            response.json(document);
+            response.status(200).json(document);
         }).catch((err) => {
             response.status(500).send('Error');
         });
@@ -44,16 +44,16 @@ module.exports = {
         };
 
         Task.findByIdAndUpdate(request.params.id, task).then((document) => {
-            response.json(document);
+            response.status(200).json(task);
         }).catch((err) => {
-            response.json(err);
+            response.status(500).send('Error');
         });
     },
 
     deleteTask : (request, response) => {
         
         Task.findByIdAndRemove(request.params.id).then((document) => {
-            response.send(document);
+            response.status(200).json(document);
         }).catch((err) => {
             response.status(500).send('Error');
         });
