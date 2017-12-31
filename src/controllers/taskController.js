@@ -21,7 +21,7 @@ module.exports = {
     tasks : (request, response) => {
         
         Task.find().then((document) => {
-            response.send(document);
+            response.json(document);
         }).catch((err) => {
             response.status(500).send('Error');
         });
@@ -29,8 +29,8 @@ module.exports = {
 
     task : (request, response) => {
 
-        Task.find({_id: request.params.id}).then((document) => {
-            response.send(document);
+        Task.findOne({_id: request.params.id}).then((document) => {
+            response.json(document);
         }).catch((err) => {
             response.status(500).send('Error');
         });
