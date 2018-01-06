@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const moment = require('moment');
 const config = require('../../config/config');
 
 module.exports = {
