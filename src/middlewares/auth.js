@@ -18,7 +18,7 @@ module.exports = {
                     {
                         if(error)
                         {
-                            response.status(400).json('Token Invalido');
+                            response.status(401).json('Token Invalido');
                         }
                         else
                         {
@@ -28,17 +28,17 @@ module.exports = {
                 }
                 else
                 {
-                    response.status(400).json('Cabecera Invalida [Bearer]');       
+                    response.status(401).json('Cabecera Invalida [Bearer]');       
                 }
             }
             else
             {
-                response.status(400).json('Cabecera Invalida [Length]');           
+                response.status(401).json('Cabecera Invalida [Length]');           
             }   
         }
         else
         {
-            response.status(400).json('Tu Peticion No Tiene Cabecera');
+            response.status(401).json('Tu Peticion No Tiene Cabecera');
         }
     },
 
