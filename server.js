@@ -54,16 +54,13 @@ app.get('/swagger.json', (req, res) => {
 //  //////////////////////////////////////////////////////
 //  START
 
-mongoose.connect(config.database);
+mongoose.connect(config.database, {useMongoClient: true});
 
-mongoose.connection.on('connected', function() {
-    console.log('MongoDB connected --->>> '+config.database);
-});
-
-mongoose.connection.on('error', function() {
-    console.log('MongoDB error --->>> '+config.database);
-});
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error!'));
+db.on('connected', console.error.bind(console, 'MongoDB connection success!'));
 
 app.listen(config.port, function() {  
-    console.log('Server Running --->>> http://localhost:'+config.port);
+    console.log('Server Running!');
 });
